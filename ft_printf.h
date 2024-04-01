@@ -9,7 +9,7 @@
 char 	*ft_strchr(const char *s, int c);
 size_t	ft_putchar(char c);
 size_t	ft_putstr(char *s);
-int		printf(char const *,);
-
+size_t ft_base(size_t num, char *ptr, size_t base, char c_exit);
+int		ft_printf(char const *,);
 
 #endif
