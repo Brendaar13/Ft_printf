@@ -1,3 +1,5 @@
+#include "ft_printf.h"
+
 size_t type_base(size_t num, char *ptr, size_t len_base)
 {
     char array[20];
