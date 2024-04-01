@@ -3,11 +3,9 @@ NAME = libftprintf.a
 CC = cc
 CCFLAGS = -Wall -Werror -Wextra
 
-SRCs = 	ft_strchr.c;	\
-	ft_putchar.c;	\
-	ft_putstr.c;	\
-	ft_base.c; 	\
-	ft_printf.c;	\
+SRCs = 	ft_print_utils.c; \
+	ft_base.c; 	  \
+	ft_printf.c;	  \
 
 OBJS = $(SRCs:.c=.o)
 
