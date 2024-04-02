@@ -1,11 +1,12 @@
 NAME = libftprintf.a
 
-CC = cc
-CCFLAGS = -Wall -Werror -Wextra
+CC = gcc
 
-SRCs = 	ft_print_utils.c; \
-	ft_base.c; 	  \
-	ft_printf.c;	  \
+CFLAGS = -Wall -Werror -Wextra
+
+SRCs = ft_printf.c \
+	   ft_base.c	\
+	   ft_printf_utils.c	\
 
 OBJS = $(SRCs:.c=.o)
 
@@ -17,17 +18,16 @@ $(NAME): $(OBJS)
 	@ranlib $(NAME)
 
 %.o : %.c
-	@$(CC) $(CCFLAGS) -c -o $@ $<
-
+	@$(CC) $(CFLAGS) -c -o $@ $<
 clean:
 	@rm -f $(OBJS)
 	@echo "Borrado todos los .o"
 
 fclean: clean
-	@$(RM) $(OBJS) $(NAME)
+	@rm -f $(NAME)
 	@echo " Borrado todos los .o y $(NAME)"
 
 re: fclean all
 	@echo " Borrado todo y creado el $(NAME)"
 
-.PHONY: norma test clean fclean re all
+.PHONY: clean fclean re all
