@@ -1,47 +1,47 @@
 #include "ft_printf.h"
 
-size_t	type_base(size_t num, char *ptr, size_t len_base)
+int     ft_putnbr(int n)
 {
-	char	array[20];
-	size_t	c_printed;
-	size_t	res;
-	size_t	i;
+        int     r;
 
-	i = 0;
-	c_printed = 0;
-	if (num == 0)
-		c_printed += ft_putchar(ptr[0]);
-	if (num != 0)
-	{
-		res = num % len_base;
-		array[i] = ptr[res];
-		num = num / len_base;
-		++i;
-	}
-	while (i--)
-		c_printed += ft_putchar(array[i]);
-	return (c_printed);
+        r = 0;
+        if (n < 0)
+        {
+                if (n == -2147483648)
+                {
+                        r += write(1, "-2", 2);
+                        n = 147483648;
+                }
+                else
+                {
+                        r += ft_putchar('-');
+                        n = -n;
+                }
+        }
+        if (n > 9)
+                r += ft_neputnbr(n / 10);
+        r += ft_putchar(n % 10 + 48);
+        return (r);
 }
 
-size_t	ft_base(size_t num, char *ptr, size_t base, char c_exit)
+int     ft_neputnbr(unsigned int n)
 {
-	size_t	c_printed;
+        int     u;
 
-	c_printed = 0;
-	if (num < 0 && (c_exit == 'd' || c_exit == 'u' || c_exit == 'i'))
-	{
-		c_printed += ft_putchar('-');
-		num = -num;
-	}
-	else if (num == 0 && (c_exit == 'p'))
-	{
-		c_printed += ft_putstr("0x0");
-		return (c_printed);
-	}
-	else if (c_exit == 'p')
-	{
-		c_printed += ft_putstr("0x");
-		c_printed += type_base(num, ptr, base);
-	}
-	return (c_printed);
+        u = 0;
+        if (n > 9)
+                u += ft_neputnbr(n / 10);
+        u += ft_putchar(n % 10 + 48);
+        return (u);
+}
+
+int     hexa(unsigned long n, char *hex)
+{
+        int     i;
+
+        i = 0;
+        if (n >= 16)
+                i += hexa((n / 16), hex);
+        i += write(1, hex + (n % 16), 1);
+        return (i);
 }
