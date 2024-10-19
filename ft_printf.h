@@ -6,10 +6,11 @@
 # include <stddef.h>
 # include <stdarg.h>
 
-char 	*ft_strchr(const char *s, int c);
-size_t	ft_putchar(char c);
-size_t	ft_putstr(char *s);
-size_t ft_base(size_t num, char *ptr, size_t base, char c_exit);
+int	ft_putchar(char c);
+int	ft_putstr(char *s);
+int     ft_putnbr(int n);
+int     ft_neputnbr(unsigned int n);
+int     hexa(unsigned long n, char *hex);
 int		ft_printf(char const *,);
 
 #endif
