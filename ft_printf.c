@@ -16,11 +16,11 @@ int     print_cexit(char c, va_list s)
         if (c == 'u')
                 c_printed += (ft_neputnbr(va_arg(s, unsigned int)));
         if (c == 'x')
-                c_printed += (hexa (va_arg(s, unsigned int), "0123456789abcdef"));
+                c_printed += (hexa(va_arg(s, unsigned int), "0123456789abcdef"));
         if (c == 'X')
-                c_printed += (hexa (va_arg(s, unsigned int), "0123456789ABCDEF"));
+                c_printed += (hexa(va_arg(s, unsigned int), "0123456789ABCDEF"));
         if (c == 'p')
-                c_printed += (ft_putstr("0x") + hexa (va_arg(s, unsigned long), "0123456789abcdef"));
+		c_printed += ft_put_ptr(va_arg(s, int *));
         return (c_printed);
 }
 
