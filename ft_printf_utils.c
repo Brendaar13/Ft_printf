@@ -1,36 +1,27 @@
 #include "ft_printf.h"
-char	*ft_strchr(const char *s, int c)
-{
-	char	a;
 
-	a = c;
-	while (*s)
-	{
-		if (*s == a)
-			return ((char *) s);
-		s++;
-	}
-	if (a == '\0')
-		return ((char *)s);
-	return (0);
-}
-
-size_t	ft_putchar(char c)
+int	ft_putchar(char c)
 {
 		write(1, &c, 1);
 		return (1);
 }
 
-size_t	ft_putstr(char *s)
+int     ft_putstr(char *s)
 {
-	int	i;
+        int     i;
 
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
+        /*if (!s)
+                return (ft_putstr("(null)"));*/
+        if (s == NULL)
+        {
+                write(1, "(null)", 6);
+                return (6);
+        }
+        i = 0;
+        while (s[i] != '\0')
+        {
+                write(1, &s[i], 1);
+                i++;
+        }
+        return (i);
 }
