@@ -1,55 +1,50 @@
 #include "ft_printf.h"
 
-size_t	print_cexit(const char c, va_list s)
+int     print_cexit(char c, va_list s)
 {
-	size_t	c_printed;
-	char	*low_hex;
-	char	*up_hex;
+        int     c_printed;
 
-	c_printed = 0;
-	low_hex = "0123456789abcdef";
-	up_hex = "0123456789ABCDEF";
-	if (c == 'c')
-		c_printed += ft_putchar(va_arg(s, int));
-	if (c == '%')
-		c_printed += ft_putchar('%');
-	if (c == 's')
-		c_printed += ft_putstr(va_arg(s, char *));
-	if (c == 'd' || c == 'i')
-		c_printed += ft_base(va_arg(s, int), "0123456789", 10, c);
-	if (c == 'u')
-		c_printed += ft_base(va_arg(s, unsigned), "0123456789", 10, c);
-	if (c == 'x')
-		c_printed += ft_base(va_arg(s, unsigned), low_hex, 16, c);
-	if (c == 'X')
-		c_printed += ft_base(va_arg(s, unsigned), up_hex, 16, c);
-	if (c == 'p')
-		c_printed += ft_base(va_arg(s, long), low_hex, 16, c);
-	return (c_printed);
+        c_printed = 0;
+        if (c == 'c')
+                c_printed += ft_putchar(va_arg(s, int));
+        if (c == '%')
+                c_printed += ft_putchar('%');
+        if (c == 's')
+                c_printed += ft_putstr(va_arg(s, char *));
+        if (c == 'd' || c == 'i')
+                c_printed += (ft_putnbr(va_arg(s, int)));
+        if (c == 'u')
+                c_printed += (ft_neputnbr(va_arg(s, unsigned int)));
+        if (c == 'x')
+                c_printed += (hexa (va_arg(s, unsigned int), "0123456789abcdef"));
+        if (c == 'X')
+                c_printed += (hexa (va_arg(s, unsigned int), "0123456789ABCDEF"));
+        if (c == 'p')
+                c_printed += (ft_putstr("0x") + hexa (va_arg(s, unsigned long), "0123456789abcdef"));
+        return (c_printed);
 }
 
-int	ft_printf(char const *str, ...)
+int     ft_printf(char const *str, ...)
 {
-	size_t	i;
-	size_t	c_printed;
-	va_list	s;
-	char	*c_exit;
+        int     i;
+        int     c_printed;
+        va_list s;
 
-	i = 0;
-	c_printed = 0;
-	va_start(s, str);
-	c_exit = "cspdiuxX%";
-	while (str[i])
-	{
-		if (str[i] == '%' && ft_strchr(c_exit, str[i + 1]))
-		{
-			c_printed += print_cexit(str[i + 1], s);
-			++i;
-		}
-		else
-			c_printed += ft_putchar(str[i]);
-		++i;
-	}
-	va_end(s);
-	return (c_printed);
+        i = 0;
+        c_printed = 0;
+        va_start(s, str);
+        while (str[i] != '\0')
+        {
+                if (str[i] == '%')
+                {
+                        c_printed += print_cexit(str[i + 1], s);
+                        //c_printed += write(1, "%%", 1);
+                        i++;
+                }
+                else
+                        c_printed += ft_putchar(str[i]);
+                i++;
+        }
+        va_end(s);
+        return (c_printed);
 }
