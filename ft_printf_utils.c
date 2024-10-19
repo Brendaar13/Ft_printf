@@ -10,8 +10,6 @@ int     ft_putstr(char *s)
 {
         int     i;
 
-        /*if (!s)
-                return (ft_putstr("(null)"));*/
         if (s == NULL)
         {
                 write(1, "(null)", 6);
