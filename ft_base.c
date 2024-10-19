@@ -45,3 +45,19 @@ int     hexa(unsigned long n, char *hex)
         i += write(1, hex + (n % 16), 1);
         return (i);
 }
+
+int	ft_put_ptr(int *ptr)
+{
+	int	i;
+        char    *hex;
+
+        hex = "0123456789abcdef";
+	i = 2;
+	if (!ptr)
+                return (ft_putstr("(nil)"));
+        ft_putchar('0');
+        ft_putchar('x');
+        
+	i += hexa((unsigned long)ptr, hex);
+	return (i);
+}
