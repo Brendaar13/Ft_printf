@@ -35,29 +35,29 @@ int     ft_unputnbr(unsigned int num)
         return (count);
 }
 
-int     hexa(unsigned long n, char *hex)
+int     hexa(unsigned long n, char *to_hex)
 {
         int     i;
 
         i = 0;
         if (n >= 16)
-                i += hexa((n / 16), hex);
-        i += write(1, hex + (n % 16), 1);
+                i += hexa((n / 16), to_hex);
+        i += write(1, to_hex + (n % 16), 1);
         return (i);
 }
 
-int	ft_put_ptr(int *ptr)
+int	ft_ptr(int *ptr)
 {
 	int	i;
-        char    *hex;
+        char    *to_hex;
 
-        hex = "0123456789abcdef";
+        to_hex = "0123456789abcdef";
 	i = 2;
 	if (!ptr)
                 return (ft_putstr("(nil)"));
         ft_putchar('0');
         ft_putchar('x');
         
-	i += hexa((unsigned long)ptr, hex);
+	i += hexa((unsigned long)ptr, to_hex);
 	return (i);
 }
