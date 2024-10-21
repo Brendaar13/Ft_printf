@@ -1,5 +1,3 @@
-#include "ft_printf.h"
-
 int	print_cexit(char c, va_list s)
 {
 	int	c_printed;
