@@ -20,7 +20,7 @@ int     print_cexit(char c, va_list s)
         if (c == 'X')
                 c_printed += (hexa(va_arg(s, unsigned int), "0123456789ABCDEF"));
         if (c == 'p')
-		c_printed += ft_put_ptr(va_arg(s, int *));
+		c_printed += ft_ptr(va_arg(s, int *));
         return (c_printed);
 }
 
