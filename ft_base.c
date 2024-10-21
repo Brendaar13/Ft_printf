@@ -19,10 +19,8 @@ int	ft_putnbr(int num)
 		}
 	}
 	if (num > 9)
-	{
 		count += ft_unputnbr(num / 10);
-		count += ft_putchar(num % 10 + 48);
-	}
+	count += ft_putchar(num % 10 + 48);
 	return (count);
 }
 
@@ -32,10 +30,8 @@ int	ft_unputnbr(unsigned int num)
 
 	count = 0;
 	if (num > 9)
-	{
 		count += ft_unputnbr(num / 10);
-		count += ft_putchar(num % 10 + 48);
-	}
+	count += ft_putchar(num % 10 + 48);
 	return (count);
 }
 
@@ -45,10 +41,8 @@ int	hexa(unsigned long num, char *to_hex)
 
 	i = 0;
 	if (num >= 16)
-	{
 		i += hexa((num / 16), to_hex);
-		i += write(1, to_hex + (n % 16), 1);
-	}
+	i += write(1, to_hex + (num % 16), 1);
 	return (i);
 }
 
