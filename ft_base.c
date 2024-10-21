@@ -1,38 +1,38 @@
 #include "ft_printf.h"
 
-int     ft_putnbr(int n)
+int     ft_putnbr(int num)
 {
-        int     r;
-
-        r = 0;
-        if (n < 0)
+        int     count;
+	
+	count = 0;
+        if (num < 0)
         {
-                if (n == -2147483648)
+                if (num == -2147483648)
                 {
-                        r += write(1, "-2", 2);
-                        n = 147483648;
+                        count += write(1, "-2", 2);
+                        num = 147483648;
                 }
                 else
                 {
-                        r += ft_putchar('-');
-                        n = -n;
+                        count += ft_putchar('-');
+                        num = -num;
                 }
         }
-        if (n > 9)
-                r += ft_neputnbr(n / 10);
-        r += ft_putchar(n % 10 + 48);
-        return (r);
+        if (num > 9)
+                count += ft_unputnbr(num / 10);
+		count += ft_putchar(num % 10 + 48);
+        return (count);
 }
 
-int     ft_neputnbr(unsigned int n)
+int     ft_unputnbr(unsigned int num)
 {
-        int     u;
+        int     count;
 
-        u = 0;
-        if (n > 9)
-                u += ft_neputnbr(n / 10);
-        u += ft_putchar(n % 10 + 48);
-        return (u);
+        count = 0;
+        if (num > 9)
+                count += ft_unputnbr(num / 10);
+		count += ft_putchar(num % 10 + 48);
+        return (count);
 }
 
 int     hexa(unsigned long n, char *hex)
