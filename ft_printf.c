@@ -45,3 +45,18 @@ int	ft_printf(char const *str, ...)
 	va_end(s);
 	return (c_printed);
 }
+
+#include <stdio.h>
+
+int main()
+{
+	//char c = 'S';
+	char *str = "Hola";
+	//int	n = 7;
+	//int negative = -7;
+	//unsigned int num = 123456;
+	//int *ptr = &n;
+
+	ft_printf("Printf: %s", str);
+	printf("\nOriginal %s", str);
+}
