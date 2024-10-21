@@ -39,14 +39,14 @@ int	ft_unputnbr(unsigned int num)
 	return (count);
 }
 
-int	hexa(unsigned long n, char *to_hex)
+int	hexa(unsigned long num, char *to_hex)
 {
 	int	i;
 
 	i = 0;
-	if (n >= 16)
+	if (num >= 16)
 	{
-		i += hexa((n / 16), to_hex);
+		i += hexa((num / 16), to_hex);
 		i += write(1, to_hex + (n % 16), 1);
 	}
 	return (i);
